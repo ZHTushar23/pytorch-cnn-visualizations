@@ -6,7 +6,7 @@ Created on Wed Jun 19 17:12:04 2019
 from misc_functions import (get_example_params,
                             convert_to_grayscale,
                             save_gradient_images)
-from vanilla_backprop import VanillaBackprop
+from vanilla_backprop_reg import VanillaBackprop
 # from guided_backprop import GuidedBackprop  # To use with guided backprop
 # from integrated_gradients import IntegratedGradients  # To use with integrated grads
 
