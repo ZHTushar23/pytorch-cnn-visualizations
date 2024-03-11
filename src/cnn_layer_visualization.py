@@ -11,7 +11,7 @@ from torch.optim import Adam
 from torchvision import models
 
 from misc_functions import preprocess_image, recreate_image, save_image
-
+from nataraja_unet import Nataraja
 
 class CNNLayerVisualization():
     """
@@ -116,14 +116,24 @@ class CNNLayerVisualization():
 
 
 if __name__ == '__main__':
-    cnn_layer = 17
+    # cnn_layer = 17
+    # filter_pos = 5
+    # # Fully connected layer is not needed
+    # pretrained_model = models.vgg16(pretrained=True).features
+    # layer_vis = CNNLayerVisualization(pretrained_model, cnn_layer, filter_pos)
+
+    # # Layer visualization with pytorch hooks
+    # layer_vis.visualise_layer_with_hooks()
+
+    # Layer visualization without pytorch hooks
+    # layer_vis.visualise_layer_without_hooks()
+
+    cnn_layer = 1
     filter_pos = 5
     # Fully connected layer is not needed
-    pretrained_model = models.vgg16(pretrained=True).features
+    model = Nataraja(n_channels=2,n_classes=2)
+    pretrained_model = model.inc
     layer_vis = CNNLayerVisualization(pretrained_model, cnn_layer, filter_pos)
 
     # Layer visualization with pytorch hooks
     layer_vis.visualise_layer_with_hooks()
-
-    # Layer visualization without pytorch hooks
-    # layer_vis.visualise_layer_without_hooks()
