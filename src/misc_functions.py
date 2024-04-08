@@ -113,7 +113,9 @@ def apply_heatmap(R, sx, sy):
     plt.figure(figsize=(sx, sy))
     plt.subplots_adjust(left=0, right=1, bottom=0, top=1)
     plt.axis('off')
+    
     heatmap = plt.imshow(R, cmap=my_cmap, vmin=-b, vmax=b, interpolation='nearest')
+    plt.colorbar()
     return heatmap
     # plt.show()
 

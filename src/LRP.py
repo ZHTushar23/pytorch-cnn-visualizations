@@ -55,15 +55,22 @@ class LRP():
         return epsilon(layer(input_tensor))
 
     def LRP_step(self, forward_output, layer, LRP_next_layer):
+        
         # Enable the gradient flow
         forward_output = forward_output.requires_grad_(True)
         # Get LRP forward out based on the LRP rules
         lrp_rule_forward_out = self.LRP_forward(layer, forward_output, None, None)
+
+        # print(lrp_rule_forward_out.requires_grad)
+        
+        
         # Perform element-wise division
         ele_div = (LRP_next_layer / lrp_rule_forward_out).data
+
         # Propagate
         (lrp_rule_forward_out * ele_div).sum().backward()
         # Get the visualization
+        print(forward_output.grad)
         LRP_this_layer = (forward_output * forward_output.grad).data
 
         return LRP_this_layer
